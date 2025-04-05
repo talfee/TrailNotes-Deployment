@@ -18,9 +18,11 @@ function CountdownTimer() {
       }, 1000);
     } else if (seconds === 0) {
       clearInterval(interval);
+      setSeconds(minutes * 60);
+      setIsActive(false);
     }
     return () => clearInterval(interval);
-  }, [isActive, seconds]);
+  }, [isActive, seconds, minutes]);
 
   const handleTimeChange = (event) => {
     setMinutes(event.target.value);
@@ -42,6 +44,7 @@ function CountdownTimer() {
         onChange={handleTimeChange}
         disabled={isActive}
         className="time-select">
+        <option value={0.5}>30 seconds</option>
         <option value={1}>1 minute</option>
         <option value={2}>2 minutes</option>
         <option value={3}>3 minutes</option>
