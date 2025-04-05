@@ -15,10 +15,13 @@ function JournalPage({ goHome }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch('http://localhost:3001/entry', {
+    const entry = { text, location };
+    console.log("Sending entry:", entry);
+
+    const res = await fetch('http://localhost:3001/entries', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ text, location }),
+      body: JSON.stringify(entry),
     });
 
     const newEntry = await res.json();
@@ -34,6 +37,7 @@ function JournalPage({ goHome }) {
         (position) => {
           const { latitude, longitude } = position.coords;
           setLocation({ latitude, longitude });
+          console.log("Location captured:", latitude, longitude);
           setLocError(null);
         },
         (err) => {
@@ -74,14 +78,16 @@ function JournalPage({ goHome }) {
       </form>
 
       <h3>Previous Entries</h3>
-      <ul>
+      <ul style={{ listStyleType: 'none', padding: 0 }}>
         {entries.map((entry) => (
-          <li key={entry.id}>
+          <li key={entry.id} style={{ marginBottom: '1.5rem' }}>
             <div>{entry.text}</div>
-            {entry.location && (
-              <div style={{ fontSize: '0.9rem', color: '#555' }}>
+            {entry.location ? (
+              <div style={{ fontSize: '0.85rem', color: '#444' }}>
                 Lat: {entry.location.latitude.toFixed(5)}, Lng: {entry.location.longitude.toFixed(5)}
               </div>
+            ) : (
+              <div style={{ fontSize: '0.85rem', color: '#777' }}>Location not shared</div>
             )}
           </li>
         ))}
