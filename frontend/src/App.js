@@ -1,23 +1,64 @@
 import React, { useState } from 'react';
+import backgroundImage from './images/homepage_image.jpg';
 import JournalPage from './JournalPage';
 import MeditationPage from './MeditationPage';
 
 function App() {
-  const [page, setPage] = useState('home'); // 'home', 'journal', or 'meditation'
+  const [page, setPage] = useState('home');
 
-  const renderPage = () => {
-    if (page === 'journal') return <JournalPage goHome={() => setPage('home')} />;
-    if (page === 'meditation') return <MeditationPage goHome={() => setPage('home')} />;
-    return (
-      <div style={{ padding: '2rem' }}>
-        <h1>TrailNotes</h1>
-        <button onClick={() => setPage('journal')}>Journal</button>
-        <button onClick={() => setPage('meditation')}>Meditation</button>
+  if (page === 'journal') return <JournalPage goHome={() => setPage('home')} />;
+  if (page === 'meditation') return <MeditationPage goHome={() => setPage('home')} />;
+
+  return (
+    <div
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        height: '100vh',
+        color: 'white',
+        textAlign: 'center',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+    >
+      <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>TrailNotes</h1>
+      <div>
+        <button
+          onClick={() => setPage('journal')}
+          style={{
+            backgroundColor: 'white',
+            color: 'black',
+            padding: '1rem 2rem',
+            borderRadius: '999px',
+            border: 'none',
+            margin: '0 1rem',
+            fontSize: '1rem',
+            cursor: 'pointer',
+          }}
+        >
+          Journal
+        </button>
+        <button
+          onClick={() => setPage('meditation')}
+          style={{
+            backgroundColor: 'white',
+            color: 'black',
+            padding: '1rem 2rem',
+            borderRadius: '999px',
+            border: 'none',
+            margin: '0 1rem',
+            fontSize: '1rem',
+            cursor: 'pointer',
+          }}
+        >
+          Meditation
+        </button>
       </div>
-    );
-  };
-
-  return <div>{renderPage()}</div>;
+    </div>
+  );
 }
 
 export default App;

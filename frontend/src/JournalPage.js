@@ -7,8 +7,7 @@ function JournalPage({ goHome }) {
   useEffect(() => {
     fetch('http://localhost:3001/entries')
       .then((res) => res.json())
-      .then((data) => setEntries(data))
-      .catch((err) => console.error(err));
+      .then((data) => setEntries(data));
   }, []);
 
   const handleSubmit = async (e) => {
@@ -24,24 +23,16 @@ function JournalPage({ goHome }) {
   };
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <button onClick={goHome}>Back</button>
+    <div>
+      <button onClick={goHome}>← Back</button>
       <h2>Journal</h2>
       <form onSubmit={handleSubmit}>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          rows="4"
-          cols="40"
-          placeholder="Write your thoughts..."
-        />
+        <textarea value={text} onChange={(e) => setText(e.target.value)} />
         <br />
         <button type="submit">Save</button>
       </form>
       <ul>
-        {entries.map((entry) => (
-          <li key={entry.id}>{entry.text}</li>
-        ))}
+        {entries.map((entry) => <li key={entry.id}>{entry.text}</li>)}
       </ul>
     </div>
   );
