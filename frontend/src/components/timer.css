@@ -3,28 +3,28 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 25vh;
     background: transparent;
     font-family: 'Segoe UI', sans-serif;
-    color: #2e3a59;
+    color: #c5cee5;
   }
   
   .timer-heading {
     font-size: 2rem;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
   
   .timer-number {
     font-size: 5rem;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
   }
   
   .timer-button {
     background-color: #4caf50;
     border: none;
     color: white;
-    padding: 12px 28px;
+    padding: 10px 20px;
     font-size: 1rem;
     border-radius: 8px;
     cursor: pointer;
@@ -37,9 +37,9 @@
   }
   
   .time-select {
-    padding: 8px;
+    padding: 2px;
     font-size: 1rem;
-    margin: 20px 0;
+    margin: 5px 0;
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
