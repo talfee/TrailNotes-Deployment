@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #e0f7fa, #ffffff);
+    background: transparent;
     font-family: 'Segoe UI', sans-serif;
     color: #2e3a59;
   }
