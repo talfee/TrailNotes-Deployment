@@ -1,6 +1,6 @@
 import React from 'react';
 
-function MeditationPage({ goHome }) {
+function Meditation({ goHome }) {
   return (
     <div style={{ padding: '2rem' }}>
       <button onClick={goHome}>Back</button>
@@ -10,4 +10,4 @@ function MeditationPage({ goHome }) {
   );
 }
 
-export default MeditationPage;
+export default Meditation;

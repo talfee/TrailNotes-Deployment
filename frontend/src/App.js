@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import backgroundImage from './images/homepage_image.jpg';
 import JournalPage from './JournalPage';
-import MeditationPage from './MeditationPage';
+import Meditation from './Meditation';
 
 function App() {
   const [page, setPage] = useState('home');
 
   if (page === 'journal') return <JournalPage goHome={() => setPage('home')} />;
-  if (page === 'meditation') return <MeditationPage goHome={() => setPage('home')} />;
+  if (page === 'meditation') return <Meditation goHome={() => setPage('home')} />;
 
   return (
     <div
