@@ -1,5 +1,5 @@
 .back-button {
-    background-color: #a5d6a7;
+    background-color: #f97c68;
     border: none;
     padding: 10px 20px;
     font-size: 1rem;
@@ -10,5 +10,5 @@
   }
   
   .back-button:hover {
-    background-color: #ddd;
+    background-color: #fababa;
   }
