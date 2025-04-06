@@ -40,7 +40,7 @@ function JournalPage({ goHome }) {
     e.preventDefault();
 
     const entry = { text, location, photo };
-    console.log("Sending entry:", entry);
+    console.log("Sending entry");
 
     const res = await fetch('http://localhost:3001/entries', {
       method: 'POST',

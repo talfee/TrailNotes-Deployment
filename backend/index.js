@@ -31,7 +31,7 @@ const server = http.createServer((req, res) => {
         const { text, location, photo } = JSON.parse(body);
         const newEntry = { id: Date.now(), text, location, photo };
         journalEntries.push(newEntry);
-        console.log("Saved entry:", newEntry);
+        console.log("Saved entry");
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(newEntry));
       } catch (err) {
