@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from './components/BackButton';
+import { useAuth0 } from '@auth0/auth0-react';
+
 
 const reverseGeocode = async (lat, lon) => {
   const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
@@ -28,13 +30,15 @@ function JournalPage({ goHome }) {
   const [location, setLocation] = useState(null);
   const [locError, setLocError] = useState(null);
   const [photo, setPhoto] = useState(null);
-
+  const { isAuthenticated, loginWithRedirect } = useAuth0();
 
   useEffect(() => {
     fetch('http://localhost:3001/entries')
       .then((res) => res.json())
       .then((data) => setEntries(data));
   }, []);
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -79,6 +83,14 @@ function JournalPage({ goHome }) {
     }
   };
 
+  if (!isAuthenticated) {
+    return (
+      <div style={{ padding: '2rem', textAlign: 'center' }}>
+        <h2>You must be logged in to write a journal ;-;</h2>
+        <button onClick={loginWithRedirect}>Log In</button>
+      </div>
+    );
+  }
 
   return (
     <div style={pageStyle}>
