@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import BackButton from './components/BackButton';
+
 
 function JournalPage({ goHome }) {
   const [text, setText] = useState('');
@@ -52,7 +54,8 @@ function JournalPage({ goHome }) {
 
   return (
     <div>
-      <button onClick={goHome}>← Back</button>
+      {/* <button onClick={goHome}>← Back</button> */}
+      <BackButton onClick={goHome} />
       <h2>Journal</h2>
 
       <form onSubmit={handleSubmit}>
