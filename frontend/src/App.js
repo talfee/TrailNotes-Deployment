@@ -42,7 +42,7 @@ function App() {
         alignItems: 'center',
       }}
     >
-      <h1 style={{ fontSize: '3rem', marginBottom: '2rem' }}>TrailNotes</h1>
+      <h1 style={{ fontSize: '5rem', marginBottom: '2rem' }}>TrailNotes</h1>
       <div>
         <button
           onClick={() => setPage('journal')}

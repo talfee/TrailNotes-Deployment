@@ -6,7 +6,15 @@ function CountdownTimer() {
   const [seconds, setSeconds] = useState(60);
   const [isActive, setIsActive] = useState(false);
 
-  const oceanSound = useRef(new Audio('/sounds/oceansound.mp3'));
+  //const oceanSound = useRef(new Audio('/sounds/oceansound.mp3'));
+
+  const oceanSound = useRef(null);
+
+  useEffect(() => {
+    const sound = new Audio('/sounds/oceansound.mp3');
+    sound.loop = true;
+    oceanSound.current = sound;
+  }, []);
 
   useEffect(() => {
     if (isActive) {
