@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from './components/BackButton';
 import { useAuth0 } from '@auth0/auth0-react';
+import "./JournalPage.css";
 
 const reverseGeocode = async (lat, lon) => {
   const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
