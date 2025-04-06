@@ -1,6 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from './components/BackButton';
 
+const reverseGeocode = async (lat, lon) => {
+  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
+  const res = await fetch(url, {
+    headers: {
+      'User-Agent': 'trailnotes-journal-app (your-email@example.com)', // required
+    },
+  });
+
+  const data = await res.json();
+  return data.display_name;
+};
 
 function JournalPage({ goHome }) {
   const [text, setText] = useState('');
@@ -36,14 +47,19 @@ function JournalPage({ goHome }) {
   const handleGetLocation = () => {
     if ('geolocation' in navigator) {
       navigator.geolocation.getCurrentPosition(
-        (position) => {
+        async (position) => {
           const { latitude, longitude } = position.coords;
-          setLocation({ latitude, longitude });
-          console.log("Location captured:", latitude, longitude);
+          const place = await reverseGeocode(latitude, longitude);
+
+          setLocation({ latitude, longitude, place });
+
+          console.log("📍 Location captured:", latitude, longitude);
+          console.log("🏙️ Resolved location:", place);
+
           setLocError(null);
         },
         (err) => {
-          console.error('Location error:', err);
+          console.error('❌ Location error:', err);
           setLocError('Unable to access location');
         }
       );
@@ -52,9 +68,9 @@ function JournalPage({ goHome }) {
     }
   };
 
+
   return (
     <div>
-      {/* <button onClick={goHome}>← Back</button> */}
       <BackButton onClick={goHome} />
       <h2>Journal</h2>
 
