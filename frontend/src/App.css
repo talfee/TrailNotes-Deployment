@@ -36,3 +36,24 @@
 .captions {
     text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7)
 }
+
+button {
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background: linear-gradient(135deg, #bcd4d3, #d6f5f5);
+    transform: translateY(-2px);
+}
+
+/* button {
+    background-color: white;
+    color: black;
+    padding: 1rem 2rem;
+    border-radius: 999px;
+    border: none;
+    margin: 0 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.5),
+} */

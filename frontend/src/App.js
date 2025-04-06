@@ -39,7 +39,7 @@ function App() {
                 const nextIndex = (currentIndex + 1) % images.length;
                 return images[nextIndex];
             });
-        }, 5000);
+        }, 10000);
 
         return () => clearInterval(intervalId);
     }, []);
@@ -65,6 +65,7 @@ function App() {
             justifyContent: 'center',
             alignItems: 'center',
             position: 'relative',
+            fontFamily: 'Helvetica Neue',
         }}
         >
             {/* ✅ Auth buttons: top-right corner */}
@@ -77,15 +78,18 @@ function App() {
                     color: 'black',
                     padding: '0.5rem 1rem',
                     border: 'none',
-                    borderRadius: '20px',
+                    borderRadius: '999px',
                     cursor: 'pointer',
+                    height: '50px',
+                    width: '100px',
+                    boxShadow: '6px 6px 16px rgba(0, 0, 0, 0.5)',
                     }}
                 >
                     Log In
                 </button>
                 ) : (
                 <>
-                    <p style={{ margin: 0, color: 'white', fontWeight: 'bold' }}>
+                    <p style={{ marginTop: '1px', marginBottom: '5px', color: 'white', fontWeight: 'bold' }}>
                     Welcome, {user.name}
                     </p>
                     <button
@@ -95,8 +99,11 @@ function App() {
                         color: 'black',
                         padding: '0.5rem 1rem',
                         border: 'none',
-                        borderRadius: '20px',
+                        borderRadius: '999px',
                         cursor: 'pointer',
+                        height: '50px',
+                        width: '125px',
+                        boxShadow: '6px 6px 16px rgba(0, 0, 0, 0.5)',
                     }}
                     >
                     Log Out
