@@ -12,7 +12,7 @@ const leftCaptions = [
     Photo by <a href="https://www.pexels.com/photo/bench-under-flowering-trees-11470287/" target="_blank" rel="noopener noreferrer">Nikita</a>
     </>,
     <>
-    Photo by <a href="https://www.pexels.com/photo/photo-of-field-full-of-pumpkins-1486976/" target="_blank" rel="noopener noreferrer">James Wheeler</a>
+    Photo by <a href="https://unsplash.com/photos/landscape-photo-of-trees-near-body-of-water-during-daytime-2Fl6efcITLA" target="_blank" rel="noopener noreferrer">Carlos Blanco</a>
     </>,
     <>
     Photo by <a href="https://www.pexels.com/photo/snowy-mountain-1881838/" target="_blank" rel="noopener noreferrer">Connor Danylenko</a>
@@ -20,7 +20,7 @@ const leftCaptions = [
 ]
 const rightCaptions = [
     "⚲ Queen Elizabeth Park, Vancouver, BC",
-    "⚲ Maple Ridge, BC",
+    "⚲ Lost Lake, Whistler, BC",
     "⚲ Whistler, BC",
 ];
 
