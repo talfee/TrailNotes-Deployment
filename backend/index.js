@@ -22,16 +22,16 @@ const server = http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': 'application/json' });
     res.end(JSON.stringify(journalEntries));
   } else if (method === 'POST' && url === '/entries') {
-    console.log("🔔 Received POST /entries");
+    console.log("Received POST /entries");
 
     let body = '';
     req.on('data', chunk => body += chunk);
     req.on('end', () => {
       try {
-        const { text, location } = JSON.parse(body);
-        const newEntry = { id: Date.now(), text, location };
+        const { text, location, photo } = JSON.parse(body);
+        const newEntry = { id: Date.now(), text, location, photo };
         journalEntries.push(newEntry);
-        console.log("Saved entry:", newEntry);
+        console.log("Saved entry");
         res.writeHead(201, { 'Content-Type': 'application/json' });
         res.end(JSON.stringify(newEntry));
       } catch (err) {
