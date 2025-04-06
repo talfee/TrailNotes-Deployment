@@ -1,10 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './timer.css';
 
 function CountdownTimer() {
     const [minutes, setMinutes] = useState(1);
   const [seconds, setSeconds] = useState(60);
   const [isActive, setIsActive] = useState(false);
+
+  const oceanSound = useRef(new Audio('/sounds/oceansound.mp3'));
+
+  useEffect(() => {
+    if (isActive) {
+      if (oceanSound.current.paused) {
+        oceanSound.current.play();
+      }
+    } else {
+      oceanSound.current.pause();
+      oceanSound.current.currentTime = 0;
+    }
+
+    return () => {
+      oceanSound.current.pause(); 
+    };
+  }, [isActive]); 
 
   useEffect(() => {
     setSeconds(minutes * 60);
