@@ -5,7 +5,7 @@ const reverseGeocode = async (lat, lon) => {
   const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
   const res = await fetch(url, {
     headers: {
-      'User-Agent': 'trailnotes-journal-app (your-email@example.com)', // required
+      'User-Agent': 'trailnotes-youcode-2024'
     },
   });
 
@@ -14,6 +14,15 @@ const reverseGeocode = async (lat, lon) => {
 };
 
 function JournalPage({ goHome }) {
+  const pageStyle = {
+    padding: '2rem',
+    height: '100vh',
+    // backgroundImage: `url(${backgroundImage})`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    color: '#000',
+  };
   const [text, setText] = useState('');
   const [entries, setEntries] = useState([]);
   const [location, setLocation] = useState(null);
@@ -53,13 +62,13 @@ function JournalPage({ goHome }) {
 
           setLocation({ latitude, longitude, place });
 
-          console.log("📍 Location captured:", latitude, longitude);
-          console.log("🏙️ Resolved location:", place);
+          console.log("Location captured:", latitude, longitude);
+          console.log("Resolved location:", place);
 
           setLocError(null);
         },
         (err) => {
-          console.error('❌ Location error:', err);
+          console.error('Location error:', err);
           setLocError('Unable to access location');
         }
       );
@@ -70,7 +79,7 @@ function JournalPage({ goHome }) {
 
 
   return (
-    <div>
+    <div style={pageStyle}>
       <BackButton onClick={goHome} />
       <h2>Journal</h2>
 
@@ -96,18 +105,40 @@ function JournalPage({ goHome }) {
         <button type="submit">Save</button>
       </form>
 
+      {/* <br />
+      <label>
+        Attach a Photo:
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => {
+            const file = e.target.files[0];
+            if (file) {
+              const reader = new FileReader();
+              reader.onloadend = () => {
+                setPhoto(reader.result); // base64 string
+              };
+              reader.readAsDataURL(file);
+            }
+          }}
+        />
+      </label>
+      <br /> */}
+
+
       <h3>Previous Entries</h3>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {entries.map((entry) => (
           <li key={entry.id} style={{ marginBottom: '1.5rem' }}>
             <div>{entry.text}</div>
-            {entry.location ? (
+            {entry.location && entry.location.place ? (
               <div style={{ fontSize: '0.85rem', color: '#444' }}>
-                Lat: {entry.location.latitude.toFixed(5)}, Lng: {entry.location.longitude.toFixed(5)}
+                {entry.location.place}
               </div>
             ) : (
               <div style={{ fontSize: '0.85rem', color: '#777' }}>Location not shared</div>
             )}
+
           </li>
         ))}
       </ul>
