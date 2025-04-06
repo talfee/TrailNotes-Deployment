@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import BackButton from './components/BackButton';
 import { useAuth0 } from '@auth0/auth0-react';
-import "./JournalPage.css";
+
 
 const reverseGeocode = async (lat, lon) => {
   const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json`;
@@ -16,22 +16,15 @@ const reverseGeocode = async (lat, lon) => {
 };
 
 function JournalPage({ goHome }) {
-//   const pageStyle = {
-//     padding: '2rem',
-//     height: '100vh',
-//     backgroundSize: 'cover',
-//     backgroundPosition: 'center',
-//     backgroundRepeat: 'no-repeat',
-//     color: '#000',
-//     backgroundColor: '#fdfaf6',
-//   };
-    const pageStyle = {
-        padding: '2rem',
-        height: '100vh',
-        backgroundColor: '#e0f7fa',
-        color: '#000',
-        fontFamily: 'Helvetica Neue',
-    };
+  const pageStyle = {
+    padding: '2rem',
+    height: '100vh',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    color: '#000',
+
+  };
   const [text, setText] = useState('');
   const [entries, setEntries] = useState([]);
   const [location, setLocation] = useState(null);
@@ -113,7 +106,7 @@ function JournalPage({ goHome }) {
           cols="40"
         />
         <br />
-        <button class = 'journalButton' type="button" onClick={handleGetLocation}>
+        <button type="button" onClick={handleGetLocation}>
           Share My Location
         </button>
         {location && (
@@ -123,7 +116,7 @@ function JournalPage({ goHome }) {
         )}
         {locError && <div style={{ color: 'red' }}>{locError}</div>}
         <br />
-        <label class = 'custom-file-upload'>
+        <label>
           Attach a Photo:
           <input
             type="file"
@@ -141,7 +134,7 @@ function JournalPage({ goHome }) {
           />
         </label>
         <br />
-        <button class = 'journalButton' type="submit">Save</button>
+        <button type="submit">Save</button>
       </form>
 
       <h3>Previous Entries</h3>
