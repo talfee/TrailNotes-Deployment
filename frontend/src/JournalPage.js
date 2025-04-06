@@ -17,16 +17,18 @@ function JournalPage({ goHome }) {
   const pageStyle = {
     padding: '2rem',
     height: '100vh',
-    // backgroundImage: `url(${backgroundImage})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     color: '#000',
+
   };
   const [text, setText] = useState('');
   const [entries, setEntries] = useState([]);
   const [location, setLocation] = useState(null);
   const [locError, setLocError] = useState(null);
+  const [photo, setPhoto] = useState(null);
+
 
   useEffect(() => {
     fetch('http://localhost:3001/entries')
@@ -37,7 +39,7 @@ function JournalPage({ goHome }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const entry = { text, location };
+    const entry = { text, location, photo };
     console.log("Sending entry:", entry);
 
     const res = await fetch('http://localhost:3001/entries', {
@@ -102,35 +104,33 @@ function JournalPage({ goHome }) {
         )}
         {locError && <div style={{ color: 'red' }}>{locError}</div>}
         <br />
+        <label>
+          Attach a Photo:
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => {
+              const file = e.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                  setPhoto(reader.result);
+                };
+                reader.readAsDataURL(file);
+              }
+            }}
+          />
+        </label>
+        <br />
         <button type="submit">Save</button>
       </form>
-
-      {/* <br />
-      <label>
-        Attach a Photo:
-        <input
-          type="file"
-          accept="image/*"
-          onChange={(e) => {
-            const file = e.target.files[0];
-            if (file) {
-              const reader = new FileReader();
-              reader.onloadend = () => {
-                setPhoto(reader.result); // base64 string
-              };
-              reader.readAsDataURL(file);
-            }
-          }}
-        />
-      </label>
-      <br /> */}
-
 
       <h3>Previous Entries</h3>
       <ul style={{ listStyleType: 'none', padding: 0 }}>
         {entries.map((entry) => (
           <li key={entry.id} style={{ marginBottom: '1.5rem' }}>
             <div>{entry.text}</div>
+
             {entry.location && entry.location.place ? (
               <div style={{ fontSize: '0.85rem', color: '#444' }}>
                 {entry.location.place}
@@ -139,9 +139,19 @@ function JournalPage({ goHome }) {
               <div style={{ fontSize: '0.85rem', color: '#777' }}>Location not shared</div>
             )}
 
+            {entry.photo && (
+              <div>
+                <img
+                  src={entry.photo}
+                  alt="Journal attachment"
+                  style={{ maxWidth: '300px', marginTop: '0.5rem', borderRadius: '8px' }}
+                />
+              </div>
+            )}
           </li>
         ))}
       </ul>
+
     </div>
   );
 }
