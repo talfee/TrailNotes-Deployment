@@ -30,6 +30,7 @@ function JournalPage({ goHome }) {
         height: '100vh',
         backgroundColor: '#e0f7fa',
         color: '#000',
+        fontFamily: 'Helvetica Neue',
     };
   const [text, setText] = useState('');
   const [entries, setEntries] = useState([]);
